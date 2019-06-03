@@ -11,37 +11,42 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 
 # load dataset
-# url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv"
-# names = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
-# dataframe = pandas.read_csv(url, names=names)
+#names = ['chr', 'Start', 'End', 'Read_Id', 'Bed_Score', 'Sens', 'CIGAR', 'age', 'CovPerReadRegion', 
+#			'NM_dist2ref', 'MD_missmatchposi', 'MC_CIGARmate', 'AlignScore', 'Variant']
 
-names = ['chr', 'Start', 'End', 'Read_Id', 'Bed_Score', 'Sens', 'CIGAR', 'age', 'CovPerReadRegion', 
-			'NM_dist2ref', 'MD_missmatchposi', 'MC_CIGARmateAlignScore', 'Variant']
 dataframe = pd.read_csv('/Users/3i521388/Documents/Github/ml4sv/data/test_del_ajout.csv', sep='\t')
 
-
-
-print(pd.get_dummies(dataframe, columns=["Variant"]).head())
-
-#df.strings.str.replace('[^a-zA-Z]', '')
-
-#CIGAR = dataframe.CIGAR.tolist()
-#print(CIGAR)
-#dataframe.assign(e=CIGAR.strings.str.replace('[^a-zA-Z]', ''))
+##########################
+# get dummies data frames
+#
+# CIGAR, Variant
+#
 dataframe['CIGAR'] = dataframe['CIGAR'].str.replace('[^a-zA-Z]', '')
-print(dataframe.CIGAR.head(3))
-
 dummies_CIGAR = pd.get_dummies(dataframe['CIGAR'])
-print(dummies_CIGAR.head(4))
+#print(dummies_CIGAR.head(2))
 
-dataframe = pd.get_dummies(dataframe, columns=["Variant"])
-#dataframe = pd.get_dummies(dataframe, columns=["CIGAR"])
+dummies_Variant = pd.get_dummies(dataframe['Variant'])
+#print(dummies_Variant.head(2))
 
-array = dataframe.values
+#dataframe2 = dataframe[['Start','End','CovPerReadRegion']]
+#print(dataframe2.head(2))
+
+dataframeok = pd.concat([dataframe[['Start','End','CovPerReadRegion']],
+		dummies_CIGAR,
+		dummies_Variant['Deletion']], axis=1, sort=False)
+print(dataframeok.head(2))
+
+#df2 = dataframe[['Start','End','CovPerReadRegion']]
+#print(df2.head(2))
+#print(dataframe.loc[:, dataframe.columns.str.startswith('CIGAR_')].head(2))
+#print(dataframe.loc[:, dataframe.columns.str.startswith('Variant_')].head(2))
+#print(dataframe.head(2))
+
+array = dataframeok.values
 #X = array[:,1:3]
-X = array[:,[1,2,7]] # works for Start, End, CovPerReadRegion
+X = array[:,0:9]
 print(X)
-Y = array[:,12]
+Y = array[:,10]
 Y=Y.astype('int') # transform to int for predict
 print(Y)
 
