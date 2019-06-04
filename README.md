@@ -1,2 +1,2 @@
 # eletric-scheep
-ml4fun
+Detecting variants with machine learning.
