@@ -1,4 +1,8 @@
-# Compare Algorithms
+#
+# Ronnie 
+#
+
+# Compare several classique and ensemble learning methods
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -22,7 +26,7 @@ dataframe = pd.read_csv('/Users/3i521388/Documents/Github/ml4sv/data/test_del_aj
 ##########################
 # get dummies data frames
 #
-# CIGAR, Variant
+# variables: CIGAR, Variant
 #
 dataframe['CIGAR'] = dataframe['CIGAR'].str.replace('[^a-zA-Z]', '')
 dummies_CIGAR = pd.get_dummies(dataframe['CIGAR'])
@@ -45,37 +49,34 @@ print(dataframeok.head(2))
 #print(dataframe.loc[:, dataframe.columns.str.startswith('Variant_')].head(2))
 #print(dataframe.head(2))
 
+#################################
+# prepare data for model learning
+#
 array = dataframeok.values
-#X = array[:,1:3]
 X = array[:,0:9]
 print(X)
 Y = array[:,10]
 Y=Y.astype('int') # transform to int for predict
 print(Y)
 
-#X = array[:,0:8]
-#Y = array[:,8]
-# prepare configuration for cross validation test harness
 seed = 777
 
 ################
-# prepare models
+# set models
 #
 models = []
-#models.append(('LR', LogisticRegression()))
 models.append(('LR', LogisticRegression(solver='lbfgs')))
 models.append(('LDA', LinearDiscriminantAnalysis()))
 models.append(('KNN', KNeighborsClassifier()))
 models.append(('CART', DecisionTreeClassifier()))
 models.append(('NB', GaussianNB()))
-#models.append(('SVM', SVC()))
 models.append(('SVM', SVC(gamma='scale')))
 models.append(('AdaB', AdaBoostClassifier()))
 models.append(('RF', RandomForestClassifier()))
 models.append(('GBM', GradientBoostingClassifier()))
 
 #############################
-# evaluate each model in turn
+# model evaluation
 #
 results = []
 names = []
@@ -87,7 +88,9 @@ for name, model in models:
 	names.append(name)
 	msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
 	print(msg)
-# boxplot algorithm comparison
+
+##############################
+# boxplot ml comparison
 fig = plt.figure()
 fig.suptitle('Benchmark 10Fold-CV classsique ML')
 ax = fig.add_subplot(111)
