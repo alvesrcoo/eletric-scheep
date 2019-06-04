@@ -9,6 +9,9 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import GradientBoostingClassifier
+from sklearn.ensemble import AdaBoostClassifier
 
 # load dataset
 #names = ['chr', 'Start', 'End', 'Read_Id', 'Bed_Score', 'Sens', 'CIGAR', 'age', 'CovPerReadRegion', 
@@ -67,6 +70,9 @@ models.append(('CART', DecisionTreeClassifier()))
 models.append(('NB', GaussianNB()))
 #models.append(('SVM', SVC()))
 models.append(('SVM', SVC(gamma='scale')))
+models.append(('AdaB', AdaBoostClassifier()))
+models.append(('RF', RandomForestClassifier()))
+models.append(('GBM', GradientBoostingClassifier()))
 
 #############################
 # evaluate each model in turn
