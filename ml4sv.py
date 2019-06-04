@@ -83,7 +83,7 @@ for name, model in models:
 	print(msg)
 # boxplot algorithm comparison
 fig = plt.figure()
-fig.suptitle('Benchmark classsique ML')
+fig.suptitle('Benchmark 10Fold-CV classsique ML')
 ax = fig.add_subplot(111)
 plt.boxplot(results)
 ax.set_xticklabels(names)
