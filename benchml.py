@@ -22,7 +22,7 @@ from sklearn.ensemble import AdaBoostClassifier
 #names = ['chr', 'Start', 'End', 'Read_Id', 'Bed_Score', 'Sens', 'CIGAR', 'age', 'CovPerReadRegion', 
 #			'NM_dist2ref', 'MD_missmatchposi', 'MC_CIGARmate', 'AlignScore', 'Variant']
 
-dataframe = pd.read_csv('/Users/3i521388/Documents/Github/ml4sv/data/test_del_ajout.csv', sep='\t')
+dataframe = pd.read_csv('data/test_del_ajout.csv', sep='\t')
 
 ##########################
 # get dummies data frames
