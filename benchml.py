@@ -78,10 +78,11 @@ models.append(('GBM', GradientBoostingClassifier()))
 
 #############################
 # model evaluation
+# f1_score :: https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html
 #
 results = []
 names = []
-scoring = 'accuracy'
+scoring = 'f1'
 for name, model in models:
 	kfold = model_selection.KFold(n_splits=10, random_state=seed)
 	cv_results = model_selection.cross_val_score(model, X, Y, cv=kfold, scoring=scoring, error_score=np.nan)
@@ -89,11 +90,11 @@ for name, model in models:
 	names.append(name)
 	msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
 	print(msg)
-
+	
 ##############################
 # boxplot ml comparison
 fig = plt.figure()
-fig.suptitle('Benchmark 10Fold-CV classsique ML')
+fig.suptitle('Benchmark 10Fold-CV classsique ML : F1_score')
 ax = fig.add_subplot(111)
 plt.boxplot(results)
 ax.set_xticklabels(names)
