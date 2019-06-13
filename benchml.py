@@ -30,6 +30,7 @@ dataframe = pd.read_csv('data/test_del_ajout.csv', sep='\t')
 # variables: CIGAR, Variant
 #
 dataframe['CIGAR'] = dataframe['CIGAR'].str.replace('[^a-zA-Z]', '')
+print(dataframe.CIGAR.head(3))
 dummies_CIGAR = pd.get_dummies(dataframe['CIGAR'])
 #print(dummies_CIGAR.head(2))
 
@@ -85,7 +86,7 @@ names = []
 scoring = 'f1'
 for name, model in models:
 	kfold = model_selection.KFold(n_splits=10, random_state=seed)
-	cv_results = model_selection.cross_val_score(model, X, Y, cv=kfold, scoring=scoring, error_score=np.nan)
+	cv_results = model_selection.cross_val_score(model, X, Y, cv=kfold, scoring=scoring, error_score=np.nan, n_jobs=-1)
 	results.append(cv_results)
 	names.append(name)
 	msg = "%s: %f (%f)" % (name, cv_results.mean(), cv_results.std())
