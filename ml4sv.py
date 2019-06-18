@@ -22,8 +22,8 @@ from sklearn.preprocessing import StandardScaler
 import keras
 from keras import metrics
 from keras import regularizers
-from keras.models import Sequential, load_model
-from keras.layers import Dense, Dropout, Flatten, Activation, Embedding, Input
+from keras.models import Sequential, Model
+from keras.layers import Input, Embedding, Dense, Dropout, Flatten, Activation
 from keras.optimizers import Adam, RMSprop
 from keras.callbacks import TensorBoard, EarlyStopping, ModelCheckpoint
 from keras.utils import plot_model
@@ -128,44 +128,47 @@ df_CIGAR = pd.DataFrame(data=encoded_CIGAR, columns=['CIGAR'])
 model = Sequential()
 model.add(Embedding(size_CIGAR, 3, input_length=1))
 model.add(Flatten())
-model.add(Dense(1, activation='sigmoid'))
+model.add(Dense(1, activation='relu'))
+
 # compile the model
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 # summarize the model
 print(model.summary())
+plot_model(model,to_file='embedding.png',show_shapes=True)
 
 # fit the model
-model.fit(df_CIGAR, dummies_Variant['Deletion'], epochs=50, verbose=0)
+model.fit(df_CIGAR, dummies_Variant['Deletion'], epochs=50, verbose=0, validation_split=0.30)
 # evaluate the model
 loss, accuracy = model.evaluate(df_CIGAR, dummies_Variant['Deletion'], verbose=0)
 print('Accuracy: %f' % (accuracy*100))
 
 '''
+print('=================> CNNN ')
 #variant_input = Input(shape(1,),dtype='int32', name='variantLabels')
 #variant_input = Input(shape(1,))
-variant_emb = Embedding(3, 3, input_length=20)#(variant_input)
-variant_out = Flatten()(variant_emb)
-variant_output = Dense(1,activation='relu',name='variant_model_out')
+#variant_emb = Embedding(3, 3, input_length=20)#(variant_input)
+#variant_out = Flatten()(variant_emb)
+#variant_output = Dense(1,activation='relu',name='variant_model_out')
 
-#cigar_input = Input(shape(1,),dtype='int32', name='cigarLabels')
-cigar_emb = Embedding(output_dim=9, input_dim=9, input_length=1)(cigar_input)
-cigar_out = Flatten()(cigar_emb)
-cigar_output = Dense(1,activation='relu',name='cigar_model_out')
+CIGAR_input = Input(shape(9,))
+CIGAR_emb = Embedding(output_dim=9, input_dim=9, input_length=1)(CIGAR_input)
+CIGAR_out = Flatten()(CIGAR_emb)
+CIGAR_output = Dense(1,activation='relu',name='CIGAR_model_out')(CIGAR_out)
 
 ###########################
 ##
 ## CNN
 ##
 
-main_input = Input(shape=(32,))
-lyr = keras.layers.concatenate([main_input,variant_out])
+main_input = Input(shape=(dataframe_num.shape[1],), name='main_input')
+lyr = keras.layers.concatenate([main_input,CIGAR_output])
 lyr = Dense(100,activation="relu")(lyr)
 lyr = Dense(50,activation="relu")(lyr)
 main_output = Dense(1, name="main_output")(lyr)
 
 var_model = Model(
-	inputs=[main_input, cigar_input, variant_input],
-	outputs=[main_output,cigar_output, variant_output]
+	inputs=[main_input, cigar_input],
+	outputs=[main_output,cigar_output]
 	) 
 
 var_model.compile(
@@ -178,9 +181,9 @@ var_model.compile(
 epochs = 500
 batch = 128
 
-history = var_model.fit(
+var_model.fit(
 	dataframe_num,
-	variant_output,
+	dummies_Variant['Deletion'],
 	batch_size=batch,
 	epochs=epochs,
 	shuffle=True,
@@ -188,4 +191,7 @@ history = var_model.fit(
 	callbacks=keras_callbacks,
 	validation_split=0.30
 	)
+
+loss, accuracy = va_model.evaluate(dataframe_num, dummies_Variant['Deletion'], verbose=0)
+print('Accuracy: %f' % (accuracy*100))
 '''
