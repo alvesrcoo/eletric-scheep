@@ -46,7 +46,6 @@ python cnn_gpu.py
 -- Remember to change input file in the data folder
 -- Run with [Deepo](https://hub.docker.com/r/ufoym/deepo/) - The GPU version
 
-## Building the final model solely based on RF
+## Building the RF model
 
 ## Do prediction
-
