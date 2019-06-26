@@ -38,7 +38,6 @@ python cnn.py
 
 ## Benchmarking 2.1
 To benchmark using simple CNN (deep learning) on GPU
-
 ```
 python cnn_gpu.py
 ```
@@ -56,4 +55,10 @@ python rf_model.py
 To load a saved RF model and predict new data
 ```
 python predict.py
+```
+
+## Balance Dataset
+Resample dataset to balance classes
+```
+python balance_dataset.py
 ```
