@@ -46,7 +46,7 @@ python cnn_gpu.py
 -- Run with [Deepo](https://hub.docker.com/r/ufoym/deepo/) - The GPU version
 
 ## Building the RF model
-To build and save a RF model
+To build and save a RF model (uploaded on Drive 'RF_model.sav' --- Bigger than 25MB to upload here)
 ```
 python rf_model.py
 ```
