@@ -57,8 +57,8 @@ To load a saved RF model (uploaded on Drive 'RF_model.sav' --- Bigger than 25MB 
 python predict.py
 ```
 
-## Balance Dataset
-Resample dataset to balance classes
+## Handling imbalanced Data
+Resampling data to find "good" balance
 ```
 python balance_dataset.py
 ```
