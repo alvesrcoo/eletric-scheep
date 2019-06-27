@@ -1,4 +1,4 @@
-# ML4SV: Detecting variants with machine learning.
+# Detecting variants with machine learning.
 
 Towards a machine learning based model for variant calling. 
 
