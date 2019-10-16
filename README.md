@@ -42,6 +42,12 @@ To benchmark using simple CNN (deep learning) on GPU
 python cnn_gpu.py
 ```
 
+## Benchmarking 2.2
+To benchmark using a new simple CNN (Deep Learning) on CPU or GPU
+```
+python ml4sv_cnn.py
+```
+
 -- Remember to change input file in the data folder
 -- Run with [Deepo](https://hub.docker.com/r/ufoym/deepo/) - The GPU version
 
