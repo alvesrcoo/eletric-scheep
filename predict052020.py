@@ -28,7 +28,7 @@ start_time = time.time()
 parser=argparse.ArgumentParser()
 parser.add_argument("csv" ,help="Take a csv file as argument/ file path needed if it's outside your working directory")
 parser.add_argument("rfmodel" ,help="Take the model file (.sav) as argument/ file path needed if it's outside your working directory")
-parser.add_argument("-out","--output", type=str, default="ml4sv_PredictionFile.csv", help="String to name the outputfile")
+parser.add_argument("-out","--output", type=str, default="rf4sv_PredictionFile.csv", help="String to name the outputfile")
 args=parser.parse_args()
 
 # Captures path and verifies if it's an actual file 
