@@ -1,3 +1,6 @@
+![](images/RF4SV_logo.png)
+==========================
+
 # Detecting variants with machine learning.
 
 Towards a machine learning based model for variant calling. 
