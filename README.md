@@ -1,4 +1,6 @@
-# Detecting variants with machine learning.
+# RF4SV: A Random Forest approach for accurate deletion detection
+
+![alt text](https://github.com/alvesrcoo/eletric-scheep/blob/master/images/RF4SV_logo.png?raw=true)
 
 Towards a machine learning based model for variant calling. 
 
