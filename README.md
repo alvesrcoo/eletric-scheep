@@ -4,7 +4,7 @@
   <img width="250" height="250" src="https://github.com/alvesrcoo/eletric-scheep/blob/master/images/RF4SV_logo.png?raw=true">
 </p>
 
-Towards a machine learning based model for variant calling. 
+This is a machine learning model based for accurate deletion detection for <a href="https://osf.io/6kf92/">RF4SV OSF project</a>. 
 
 # About RF4SV
 
