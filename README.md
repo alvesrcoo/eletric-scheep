@@ -27,6 +27,16 @@ To deactivate an active environment:
 source deactivate
 ```
 
+# Download Drosophila melanogaster genome
+```
+ wget ftp://ftp.ensemblgenomes.org/pub/metazoa/release-43/fasta/drosophila_melanogaster/dna/Drosophila_melanogaster.BDGP6.22.dna.chromosome.*
+```
+
+# Simulate deletions (RSVSim)
+```
+simdata/simSVDel.R
+```
+
 # Read simulation process
 
 Read simulation
