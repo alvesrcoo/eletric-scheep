@@ -10,7 +10,7 @@ import time
 start_time = time.time()
 
 # Load dataset
-dataframe = pd.read_csv('train.csv', sep=',', low_memory=False)
+dataframe = pd.read_csv('/data/data.csv', sep=',', low_memory=False)
 
 ##########################
 # get dummies data frames
