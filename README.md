@@ -12,19 +12,14 @@ Efficiently detecting genomic structural variants (SVs) is a key step to grasp t
 
 ## Getting Started 
 
-To create/import conda environment for machine learning [RF4SV]: 
+Requirements: 
 ```
-conda env create -f env.yaml
-```
-
-To activate the environment:  
-```
-source activate ml4sv
-```
-
-To deactivate an active environment: 
-```
-source deactivate
+- python3
+- numpy
+- pandas
+- scikit-learn
+- keras
+- tensorflow
 ```
 
 # Download Drosophila melanogaster genome
@@ -70,13 +65,12 @@ python benchml.py
 
 ## Benchmarking 2
 
-To benchmark using a new simple CNN (Deep Learning) on CPU or GPU
+To benchmark using Neural Network (Deep Learning)
 ```
 python ml4sv_cnn.py
 ```
 
 -- Remember to change input file in the data folder
--- Run with [Deepo](https://hub.docker.com/r/ufoym/deepo/) - The GPU version
 
 ## Building the RF model
 
@@ -99,5 +93,15 @@ python predict.py
 For friendly user prediction results
 
 ```
-python predict052020.py
+python path/PredictPostProcess052020.py path/predictionfile.csv
+```
+
+-- In this case, data must be with 1 or 0 in column "Variant"
+
+## Docker RF4SV
+Train and predict models using Random Forest, Benchmarking Algorithms and Neural Network
+
+To run RF4SV project using <a href="https://hub.docker.com/repository/docker/robertoxavier/rf4sv">Docker</a>:
+```
+docker run --rm -v /your/data/dir:/data robertoxavier/rf4sv:v1.0 bash
 ```
