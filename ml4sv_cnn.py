@@ -71,7 +71,7 @@ def f1(y_true, y_pred):
 start_time = time.time()
 
 # Load dataset
-dataframe = pd.read_csv('/home/roberto/Documentos/eletric-scheep-master/data/balancing/data.csv', sep=',', low_memory=False)
+dataframe = pd.read_csv('data/data.csv', sep=',', low_memory=False)
 
 #------ ENCODE CIGAR to numeric
 dataframe['CIGAR'] = dataframe['CIGAR'].str.replace('[^a-zA-Z]', '')

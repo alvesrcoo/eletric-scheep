@@ -18,7 +18,7 @@ start_time = time.time()
 
 #load dataset
 #dataframe = pd.read_csv('data/test_del_ajout.csv', sep='\t')
-dataframe = pd.read_csv('data/data.csv', sep='\t', low_memory=False)
+dataframe = pd.read_csv('data/data.csv', sep=',', low_memory=False)
 
 ##########################
 # get dummies data frames

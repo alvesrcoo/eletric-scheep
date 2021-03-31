@@ -20,8 +20,7 @@ from sklearn.ensemble import AdaBoostClassifier
 import time
 
 start_time = time.time()
-#dataframe = pd.read_csv('data/test_del_ajout.csv', sep='\t')
-dataframe = pd.read_csv('data.csv', sep=',', low_memory=False)
+dataframe = pd.read_csv('data/data.csv', sep=',', low_memory=False)
 
 ##########################
 # get dummies data frames
