@@ -1,7 +1,7 @@
 # RF4SV: A Random Forest approach for accurate deletion detection
 
 <p align="center">
-  <img width="250" height="250" src="https://github.com/alvesrcoo/eletric-scheep/blob/master/images/RF4SV_logo.png?raw=true">
+  <img width="250" height="250" src="https://github.com/alvesrcoo/eletric-scheep/blob/master/images/RF4Del_logo.png?raw=true">
 </p>
 
 This is a machine learning model based for accurate deletion detection for <a href="https://osf.io/6kf92/">RF4SV OSF project</a>. 
